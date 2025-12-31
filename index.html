@@ -1,0 +1,1757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy New Year Lipsita! 💕</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-pink: #FF6B9D;
+            --primary-purple: #C084FC;
+            --accent-gold: #FFD700;
+            --accent-rose: #FFB6C1;
+            --bg-dark: #0a0a0a;
+            --text-light: #ffffff;
+            --text-gray: #e0e0e0;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            --gradient-2: linear-gradient(135deg, #FF6B9D 0%, #C084FC 50%, #FFD700 100%);
+            --gradient-3: linear-gradient(135deg, #FFB6C1 0%, #FF6B9D 50%, #C084FC 100%);
+            --beige-bg: #F5E6D3;
+            --cassette-black: #1a1a1a;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+        }
+
+        /* Page Container */
+        .page {
+            display: none;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1.5rem 0;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .nav-links a.unlocked {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .nav-links a.unlocked:hover {
+            color: var(--accent-gold);
+        }
+
+        /* Lock Overlay */
+        .lock-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 10000;
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            transition: opacity 0.5s ease;
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .lock-overlay.unlocked {
+            opacity: 0 !important;
+            pointer-events: none !important;
+            display: none !important;
+        }
+
+        .lock-icon {
+            font-size: 5rem;
+            margin-bottom: 2rem;
+            animation: lockPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes lockPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .lock-message {
+            font-size: 2rem;
+            font-family: 'Playfair Display', serif;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--accent-gold);
+        }
+
+        .lock-countdown-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 1.5rem;
+            padding: 2rem 3rem;
+            margin: 2rem auto;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .lock-countdown-label {
+            font-size: 1rem;
+            color: var(--text-gray);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        .lock-countdown {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--accent-gold);
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: 3px;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        .password-section {
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        .password-input-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            align-items: center;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .password-input {
+            padding: 1rem 1.5rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-light);
+            font-size: 1.1rem;
+            font-family: 'Poppins', sans-serif;
+            width: 300px;
+            max-width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .password-input:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .password-button {
+            padding: 1rem 2.5rem;
+            background: var(--gradient-2);
+            border: none;
+            border-radius: 50px;
+            color: var(--bg-dark);
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .password-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba(255, 107, 157, 0.5);
+        }
+
+        .password-reveal {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid var(--accent-gold);
+            border-radius: 1rem;
+            display: none;
+        }
+
+        .password-reveal.show {
+            display: block;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .password-reveal-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--accent-gold);
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: 3px;
+            margin-top: 0.5rem;
+        }
+
+        .error-message {
+            color: #ff6b6b;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+            animation: shake 0.5s ease;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        /* Home Page */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: var(--gradient-1);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            padding: 2rem;
+            overflow: hidden;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 900px;
+            z-index: 2;
+            position: relative;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-title {
+            font-size: 5.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            font-family: 'Playfair Display', serif;
+            line-height: 1.2;
+        }
+
+        .hero-title .name {
+            display: block;
+            background: linear-gradient(45deg, #FFD700, #FF6B9D, #C084FC);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* New Year Greeting Card */
+        .greeting-card {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.15) 0%, rgba(255, 107, 157, 0.15) 50%, rgba(192, 132, 252, 0.15) 100%);
+            backdrop-filter: blur(20px);
+            border: 3px solid rgba(255, 215, 0, 0.4);
+            border-radius: 2rem;
+            padding: 4rem 3rem;
+            max-width: 700px;
+            margin: 3rem auto;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 40px rgba(255, 215, 0, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .greeting-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        .greeting-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.4), 0 0 60px rgba(255, 215, 0, 0.3);
+            border-color: var(--accent-gold);
+        }
+
+        .greeting-card-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .greeting-emoji {
+            font-size: 5rem;
+            margin-bottom: 1.5rem;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        .greeting-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            font-family: 'Playfair Display', serif;
+            background: linear-gradient(45deg, #FFD700, #FF6B9D, #C084FC);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .greeting-year {
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--accent-gold);
+            margin: 1rem 0;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .greeting-message {
+            font-size: 1.5rem;
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-top: 2rem;
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .greeting-name {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            margin-top: 1rem;
+            font-family: 'Dancing Script', cursive;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        /* Songs Page - Cassette Design */
+        .songs-page {
+            background: var(--beige-bg);
+            min-height: 100vh;
+            padding: 6rem 2rem 4rem;
+        }
+
+        .songs-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .songs-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .songs-title-1 {
+            font-family: 'Caveat', cursive;
+            font-size: 2.5rem;
+            color: #c41e3a;
+            margin-bottom: 0.5rem;
+        }
+
+        .songs-title-2 {
+            font-family: 'Caveat', cursive;
+            font-size: 4rem;
+            color: #5d4037;
+            margin-bottom: 1rem;
+        }
+
+        .songs-title-2::after {
+            content: ' ♫ ♫';
+            color: #7b1fa2;
+        }
+
+        .cassettes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 3rem;
+            justify-items: center;
+            margin-bottom: 3rem;
+        }
+
+        .cassette {
+            width: 320px;
+            height: 200px;
+            background: var(--cassette-black);
+            border-radius: 8px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .cassette:hover {
+            transform: translateY(-10px);
+        }
+
+        .cassette.playing {
+            border: 3px solid var(--accent-gold);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+            animation: pulseCassette 1s ease-in-out infinite;
+        }
+
+        @keyframes pulseCassette {
+            0%, 100% { transform: translateY(-10px) scale(1); }
+            50% { transform: translateY(-10px) scale(1.02); }
+        }
+
+        .cassette-label {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+            background: white;
+            border-radius: 4px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cassette-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .cassette-type {
+            font-size: 0.7rem;
+            color: #666;
+            font-weight: 600;
+        }
+
+        .cassette-side {
+            font-size: 0.7rem;
+            color: #666;
+            font-weight: 600;
+        }
+
+        .cassette-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff6b9d, #c084fc);
+            margin: 5px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+
+        .cassette-content {
+            display: flex;
+            gap: 15px;
+            flex: 1;
+        }
+
+        .cassette-info {
+            flex: 1;
+        }
+
+        .cassette-title {
+            font-family: 'Caveat', cursive;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+
+        .cassette-description {
+            font-size: 0.85rem;
+            color: #666;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Navigation Buttons */
+        .page-nav {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 1.5rem;
+            z-index: 999;
+        }
+
+        .nav-btn {
+            background: var(--gradient-2);
+            color: var(--bg-dark);
+            border: none;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .nav-btn.prev {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-light);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .nav-btn.prev:hover:not(:disabled) {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Goals Page */
+        .goals-page {
+            background: var(--gradient-3);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            min-height: 100vh;
+            padding: 6rem 2rem 4rem;
+        }
+
+        .goals-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .page-title {
+            font-size: 4rem;
+            font-family: 'Playfair Display', serif;
+            text-align: center;
+            margin-bottom: 4rem;
+            color: var(--accent-gold);
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+        }
+
+        .goals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .goal-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 2rem;
+            padding: 3rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .goal-card:hover {
+            transform: translateY(-15px);
+            border-color: var(--accent-gold);
+        }
+
+        .goal-icon {
+            font-size: 5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .goal-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            font-family: 'Playfair Display', serif;
+            color: var(--accent-gold);
+        }
+
+        .goal-description {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--text-light);
+        }
+
+        /* Wishes Page */
+        .wishes-page {
+            background: var(--bg-dark);
+            min-height: 100vh;
+            padding: 6rem 2rem 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .wishes-container {
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .wish-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 2rem;
+            padding: 4rem;
+            font-size: 1.4rem;
+            line-height: 2.2;
+            color: var(--text-light);
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .wish-card p {
+            margin-bottom: 2rem;
+        }
+
+        .wish-signature {
+            text-align: right;
+            margin-top: 3rem;
+            font-size: 1.8rem;
+            color: var(--accent-gold);
+            font-weight: 600;
+        }
+
+        /* Final Page */
+        .final-page {
+            background: #000000;
+            min-height: 100vh;
+            padding: 6rem 2rem 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stars-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s ease-in-out infinite, moveStar 20s linear infinite;
+        }
+
+        .star.small {
+            width: 2px;
+            height: 2px;
+        }
+
+        .star.medium {
+            width: 3px;
+            height: 3px;
+        }
+
+        .star.large {
+            width: 4px;
+            height: 4px;
+        }
+
+        .star.bright {
+            width: 5px;
+            height: 5px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes moveStar {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(var(--move-x), var(--move-y)); }
+        }
+
+        .final-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .final-thought {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 2rem;
+            padding: 4rem;
+            margin-bottom: 3rem;
+            font-size: 1.5rem;
+            line-height: 2;
+            color: var(--text-light);
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .restart-button {
+            background: var(--gradient-2);
+            border: none;
+            padding: 1.5rem 4rem;
+            border-radius: 50px;
+            color: var(--bg-dark);
+            font-size: 1.3rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.3);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .restart-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 107, 157, 0.5);
+        }
+
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000000;
+            z-index: 20000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .loading-screen.active {
+            display: flex;
+        }
+
+        .loading-stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .loading-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .loading-title {
+            font-size: 5rem;
+            font-weight: 900;
+            font-family: 'Playfair Display', serif;
+            background: linear-gradient(45deg, #FFD700, #FF6B9D, #C084FC);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 2rem;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .loading-year {
+            font-size: 6rem;
+            font-weight: 900;
+            color: var(--accent-gold);
+            text-shadow: 0 0 40px rgba(255, 215, 0, 0.6);
+            font-family: 'Poppins', sans-serif;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 40px rgba(255, 215, 0, 0.6); }
+            to { text-shadow: 0 0 60px rgba(255, 215, 0, 0.9), 0 0 80px rgba(255, 107, 157, 0.5); }
+        }
+
+        /* Celebration */
+        .celebration {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10001;
+            background: var(--gradient-2);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .celebration.active {
+            display: flex;
+        }
+
+        .celebration-content {
+            text-align: center;
+        }
+
+        .celebration h1 {
+            font-size: 6rem;
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 2rem;
+            animation: bounce 1s ease infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Confetti */
+        .confetti-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: var(--primary-pink);
+            animation: confettiFall linear infinite;
+        }
+
+        .confetti:nth-child(odd) {
+            background: var(--primary-purple);
+        }
+
+        .confetti:nth-child(3n) {
+            background: var(--accent-gold);
+        }
+
+        @keyframes confettiFall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 3.5rem;
+            }
+
+            .cassettes-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .songs-title-2 {
+                font-size: 2.5rem;
+            }
+
+            .page-title {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="nav-logo">💕 For Lipsita</div>
+            <ul class="nav-links">
+                <li><a href="#" onclick="showPage('home'); return false;" class="unlocked">Home</a></li>
+                <li><a href="#" onclick="showPage('songs'); return false;" id="songsLink">Songs</a></li>
+                <li><a href="#" onclick="showPage('goals'); return false;" id="goalsLink">Our Future</a></li>
+                <li><a href="#" onclick="showPage('wishes'); return false;" id="wishesLink">Wishes</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Confetti Container -->
+    <div class="confetti-container" id="confettiContainer"></div>
+
+    <!-- Lock Overlay -->
+    <div class="lock-overlay" id="lockOverlay">
+        <div class="lock-icon">🔒</div>
+        <div class="lock-message">Pages are locked until New Year!</div>
+        
+        <!-- Countdown Card -->
+        <div class="lock-countdown-card">
+            <div class="lock-countdown-label">New Year Countdown</div>
+            <div class="lock-countdown" id="lockCountdown">00:00:00:00</div>
+        </div>
+        
+        <p style="color: var(--text-gray); margin-top: 2rem; text-align: center; max-width: 500px;">
+            Enter the password to unlock early, or wait for the countdown! 💕
+        </p>
+        
+        <div class="password-section">
+            <div class="password-input-group">
+                <input 
+                    type="password" 
+                    class="password-input" 
+                    id="passwordInput" 
+                    placeholder="Enter password..."
+                >
+                <button class="password-button" id="unlockBtn">Unlock</button>
+            </div>
+            <div class="error-message" id="errorMessage">❌ Wrong password! Try again.</div>
+            
+            <div class="password-reveal" id="passwordReveal">
+                <div style="color: var(--text-gray); font-size: 0.9rem;">Password revealed at New Year:</div>
+                <div class="password-reveal-value" id="passwordValue">MYPRINCESSLIPSI2026</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Home Page -->
+    <div class="page active" id="homePage">
+        <section class="hero">
+            <div class="hero-content">
+                <div style="display: inline-block; padding: 0.75rem 2rem; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border-radius: 50px; font-weight: 600; margin-bottom: 2rem; border: 2px solid rgba(255, 255, 255, 0.3);">
+                    🎉 Happy New Year 2025 🎉
+                </div>
+                <h1 class="hero-title">
+                    <span>For My Beautiful</span>
+                    <span class="name">Lipsita</span>
+                </h1>
+                <p style="font-size: 1.8rem; color: var(--text-gray); margin-bottom: 3rem; font-family: 'Dancing Script', cursive;">
+                    A special year ahead, filled with love and dreams together
+                </p>
+                
+                <!-- New Year Greeting Card -->
+                <div class="greeting-card">
+                    <div class="greeting-card-content">
+                        <div class="greeting-emoji">🎉</div>
+                        <div class="greeting-title">Happy New Year</div>
+                        <div class="greeting-year">2026</div>
+                        <div class="greeting-message">
+                            May this new year bring you<br>
+                            endless joy, success, and happiness!<br>
+                            <span class="greeting-name">Lipsita 💕</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="page-nav">
+            <button class="nav-btn prev" onclick="navigatePage('prev')" id="prevBtnHome" disabled>
+                <span>←</span> Previous
+            </button>
+            <button class="nav-btn" onclick="navigatePage('next')" id="nextBtnHome">
+                Next <span>→</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Songs Page -->
+    <div class="page" id="songsPage">
+        <div class="songs-page">
+            <div class="songs-container">
+                <div class="songs-header">
+                    <div class="songs-title-1">Dedicated To You</div>
+                    <div class="songs-title-2">Songs That Match Your Vibes</div>
+                </div>
+                
+                <div class="cassettes-grid">
+                    <!-- Cassette 1 - Sahiba -->
+                    <div class="cassette" onclick="playSong('sahiba', this)" style="cursor: pointer;">
+                        <div class="cassette-label">
+                            <div class="cassette-header">
+                                <div class="cassette-type">Type II / CrO2</div>
+                                <div class="cassette-side">SIDE A</div>
+                            </div>
+                            <div class="cassette-content">
+                                <div class="cassette-image">💕</div>
+                                <div class="cassette-info">
+                                    <div class="cassette-title">Sahiba</div>
+                                    <div class="cassette-description">GOOD VIBES ONLY</div>
+                                    <div style="font-size: 0.7rem; color: #999; margin-top: 0.5rem;">Click to play</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cassette 2 - For A Reason -->
+                    <div class="cassette" onclick="playSong('forareason', this)" style="cursor: pointer;">
+                        <div class="cassette-label">
+                            <div class="cassette-header">
+                                <div class="cassette-type">Type II / CrO2</div>
+                                <div class="cassette-side">SIDE A</div>
+                            </div>
+                            <div class="cassette-content">
+                                <div class="cassette-image">🌅</div>
+                                <div class="cassette-info">
+                                    <div class="cassette-title">For. A. Reason.</div>
+                                    <div class="cassette-description">SOME MOMENTS JUST FEEL RIGHT</div>
+                                    <div style="font-size: 0.7rem; color: #999; margin-top: 0.5rem;">Click to play</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cassette 3 - Dil Ka Jo Hal H -->
+                    <div class="cassette" onclick="playSong('dilkajohalh', this)" style="cursor: pointer;">
+                        <div class="cassette-label">
+                            <div class="cassette-header">
+                                <div class="cassette-type">Type II / CrO2</div>
+                                <div class="cassette-side">SIDE A</div>
+                            </div>
+                            <div class="cassette-content">
+                                <div class="cassette-image">🎵</div>
+                                <div class="cassette-info">
+                                    <div class="cassette-title">Dil Ka Jo Hal H</div>
+                                    <div class="cassette-description">PERFECT FOR QUIET REFLECTIONS</div>
+                                    <div style="font-size: 0.7rem; color: #999; margin-top: 0.5rem;">Click to play</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="page-nav">
+            <button class="nav-btn prev" onclick="navigatePage('prev')" id="prevBtnSongs">
+                <span>←</span> Previous
+            </button>
+            <button class="nav-btn" onclick="navigatePage('next')" id="nextBtnSongs">
+                Next <span>→</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Goals Page -->
+    <div class="page" id="goalsPage">
+        <div class="goals-page">
+            <div class="goals-container">
+                <h1 class="page-title">Our Future Together 💕</h1>
+                
+                <div class="goals-grid">
+                    <div class="goal-card">
+                        <div class="goal-icon">💍</div>
+                        <h3 class="goal-title">Marriage</h3>
+                        <p class="goal-description">I dream of the day we say "I do" and start our forever journey together as one.</p>
+                    </div>
+                    <div class="goal-card">
+                        <div class="goal-icon">🏡</div>
+                        <h3 class="goal-title">Our Home</h3>
+                        <p class="goal-description">Building a beautiful home together, filled with love, laughter, and memories.</p>
+                    </div>
+                    <div class="goal-card">
+                        <div class="goal-icon">✈️</div>
+                        <h3 class="goal-title">Adventures</h3>
+                        <p class="goal-description">Exploring the world hand in hand, creating unforgettable memories together.</p>
+                    </div>
+                    <div class="goal-card">
+                        <div class="goal-icon">🎉</div>
+                        <h3 class="goal-title">Get Togethers</h3>
+                        <p class="goal-description">Celebrating every moment, big and small, with family and friends by our side.</p>
+                    </div>
+                    <div class="goal-card">
+                        <div class="goal-icon">💑</div>
+                        <h3 class="goal-title">Growing Together</h3>
+                        <p class="goal-description">Supporting each other's dreams and growing stronger together every single day.</p>
+                    </div>
+                    <div class="goal-card">
+                        <div class="goal-icon">🌟</div>
+                        <h3 class="goal-title">Forever Love</h3>
+                        <p class="goal-description">A lifetime of love, happiness, and endless beautiful moments with you, Lipsita.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-nav">
+            <button class="nav-btn prev" onclick="navigatePage('prev')" id="prevBtnGoals">
+                <span>←</span> Previous
+            </button>
+            <button class="nav-btn" onclick="navigatePage('next')" id="nextBtnGoals">
+                Next <span>→</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Wishes Page -->
+    <div class="page" id="wishesPage">
+        <div class="wishes-page">
+            <div class="wishes-container">
+                <h1 class="page-title" style="background: var(--gradient-2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 4rem;">My Wishes For You 💕</h1>
+                
+                <div class="wish-card">
+                    <p>My dearest Lipsita,</p>
+                    <p>As we step into this new year, I want you to know how much you mean to me. You are not just my girlfriend, you are my best friend, my partner, and my greatest blessing.</p>
+                    <p>I wish for you endless happiness, success in everything you do, and all the love your heart can hold. May this year bring us closer together and fill our lives with beautiful moments.</p>
+                    <p>I promise to stand by you through everything, to support your dreams, and to love you more with each passing day. Together, we can achieve anything.</p>
+                    <p>Here's to a year filled with laughter, adventures, and most importantly, each other. Happy New Year, my love! 💕</p>
+                    <div class="wish-signature">
+                        With all my love,<br>
+                        Forever yours 💖
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-nav">
+            <button class="nav-btn prev" onclick="navigatePage('prev')" id="prevBtnWishes">
+                <span>←</span> Previous
+            </button>
+            <button class="nav-btn" onclick="navigatePage('next')" id="nextBtnWishes">
+                Next <span>→</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Final Page -->
+    <div class="page" id="finalPage">
+        <div class="final-page">
+            <div class="stars-background" id="finalStars"></div>
+            <div class="final-content">
+                <div class="final-thought">
+                    <p style="font-size: 2rem; margin-bottom: 2rem; color: var(--accent-gold); font-weight: 600;">A Thought For You 💭</p>
+                    <p>Lipsita, as we begin this new year together, I want you to know that you are the most beautiful part of my life. Every moment with you is a gift, and I'm grateful for every second we share.</p>
+                    <p style="margin-top: 2rem;">This year, let's create more beautiful memories, chase our dreams together, and build a future filled with love, laughter, and endless happiness.</p>
+                    <p style="margin-top: 2rem; font-size: 1.8rem; color: var(--accent-gold);">You are my everything. Always and forever. 💕</p>
+                </div>
+                <button class="restart-button" onclick="showLoadingScreen()">
+                    Restart Journey
+                </button>
+            </div>
+        </div>
+        <div class="page-nav">
+            <button class="nav-btn prev" onclick="navigatePage('prev')" id="prevBtnFinal">
+                <span>←</span> Previous
+            </button>
+            <button class="nav-btn" onclick="navigatePage('next')" id="nextBtnFinal" disabled>
+                Next <span>→</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-stars" id="loadingStars"></div>
+        <div class="loading-content">
+            <div class="loading-title">Happy New Year</div>
+            <div class="loading-year">2026</div>
+        </div>
+    </div>
+
+    <!-- Celebration -->
+    <div class="celebration" id="celebration">
+        <div class="celebration-content">
+            <h1>🎉 HAPPY NEW YEAR! 🎉</h1>
+            <h2 style="font-size: 3rem; font-family: 'Dancing Script', cursive; color: var(--accent-gold);">Lipsita, I Love You! 💕</h2>
+            <p style="font-size: 1.5rem; margin-top: 2rem;">All pages are now unlocked! Explore everything! ✨</p>
+            <button onclick="closeCelebration()" style="margin-top: 2rem; padding: 1rem 3rem; background: var(--gradient-2); border: none; border-radius: 50px; font-size: 1.2rem; font-weight: 700; cursor: pointer; color: var(--bg-dark);">
+                Continue
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Create confetti
+        function createConfetti() {
+            const container = document.getElementById('confettiContainer');
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.animationDelay = Math.random() * 5 + 's';
+                confetti.style.animationDuration = (3 + Math.random() * 3) + 's';
+                confetti.style.width = (5 + Math.random() * 10) + 'px';
+                confetti.style.height = confetti.style.width;
+                container.appendChild(confetti);
+            }
+        }
+        createConfetti();
+
+        // ========== PASSWORD & TIMER SYSTEM ==========
+        const CORRECT_PASSWORD = 'MYPRINCESSLIPSI2026';
+        let isUnlocked = false;
+        let passwordRevealed = false;
+        
+        // Check localStorage for unlock status
+        try {
+            const stored = localStorage.getItem('newYearUnlocked');
+            isUnlocked = stored === 'true';
+        } catch(e) {
+            console.log('localStorage error:', e);
+        }
+
+        // Page order
+        const pages = ['home', 'songs', 'goals', 'wishes', 'final'];
+        let currentPageIndex = 0;
+
+        // Page Navigation
+        function showPage(pageId) {
+            if (!isUnlocked && pageId !== 'home') {
+                alert('🔒 This page is locked! Enter the password or wait for New Year!');
+                return;
+            }
+
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(pageId + 'Page').classList.add('active');
+            
+            // Update current page index
+            currentPageIndex = pages.indexOf(pageId);
+            updateNavButtons();
+        }
+
+        function navigatePage(direction) {
+            if (direction === 'next' && currentPageIndex < pages.length - 1) {
+                const nextPage = pages[currentPageIndex + 1];
+                if (!isUnlocked && nextPage !== 'home') {
+                    alert('🔒 This page is locked! Enter the password or wait for New Year!');
+                    return;
+                }
+                showPage(nextPage);
+            } else if (direction === 'prev' && currentPageIndex > 0) {
+                showPage(pages[currentPageIndex - 1]);
+            }
+        }
+
+        function updateNavButtons() {
+            // Update all nav buttons
+            document.getElementById('prevBtnHome').disabled = currentPageIndex === 0;
+            document.getElementById('nextBtnHome').disabled = currentPageIndex === pages.length - 1;
+            document.getElementById('prevBtnSongs').disabled = currentPageIndex === 0;
+            document.getElementById('nextBtnSongs').disabled = currentPageIndex === pages.length - 1;
+            document.getElementById('prevBtnGoals').disabled = currentPageIndex === 0;
+            document.getElementById('nextBtnGoals').disabled = currentPageIndex === pages.length - 1;
+            document.getElementById('prevBtnWishes').disabled = currentPageIndex === 0;
+            document.getElementById('nextBtnWishes').disabled = currentPageIndex === pages.length - 1;
+            document.getElementById('prevBtnFinal').disabled = currentPageIndex === 0;
+            document.getElementById('nextBtnFinal').disabled = currentPageIndex === pages.length - 1;
+        }
+
+        // Password Check Function
+        function checkPassword() {
+            console.log('checkPassword called');
+            const input = document.getElementById('passwordInput');
+            const errorMsg = document.getElementById('errorMessage');
+            
+            if (!input) {
+                console.error('Password input not found!');
+                return;
+            }
+            
+            const enteredPassword = input.value.trim().toUpperCase();
+            console.log('Entered password:', enteredPassword);
+            console.log('Correct password:', CORRECT_PASSWORD);
+            
+            if (enteredPassword === CORRECT_PASSWORD) {
+                console.log('Password correct! Unlocking...');
+                errorMsg.classList.remove('show');
+                unlockPages();
+            } else {
+                console.log('Password incorrect!');
+                errorMsg.classList.add('show');
+                input.value = '';
+                input.focus();
+                setTimeout(() => {
+                    errorMsg.classList.remove('show');
+                }, 3000);
+            }
+        }
+
+        // Countdown Timer Function
+        function updateCountdown() {
+            const now = new Date();
+            const currentYear = now.getFullYear();
+            let targetDate = new Date(currentYear + 1, 0, 1, 0, 0, 0); // Next New Year
+            
+            // Calculate time left
+            const timeLeft = targetDate - now;
+            
+            // Check if New Year has arrived
+            if (timeLeft <= 0) {
+                if (!passwordRevealed) {
+                    revealPassword();
+                }
+                if (!isUnlocked) {
+                    unlockPages();
+                }
+                return;
+            }
+            
+            // Calculate time components
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+            
+            // Update display
+            const daysEl = document.getElementById('days');
+            const hoursEl = document.getElementById('hours');
+            const minutesEl = document.getElementById('minutes');
+            const secondsEl = document.getElementById('seconds');
+            const lockCountdownEl = document.getElementById('lockCountdown');
+            
+            if (daysEl) daysEl.textContent = String(days).padStart(2, '0');
+            if (hoursEl) hoursEl.textContent = String(hours).padStart(2, '0');
+            if (minutesEl) minutesEl.textContent = String(minutes).padStart(2, '0');
+            if (secondsEl) secondsEl.textContent = String(seconds).padStart(2, '0');
+            
+            if (lockCountdownEl) {
+                lockCountdownEl.textContent = 
+                    `${String(days).padStart(2, '0')}:${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+            }
+            
+            // Auto-unlock when countdown reaches zero
+            if (days === 0 && hours === 0 && minutes === 0 && seconds === 0) {
+                if (!passwordRevealed) {
+                    revealPassword();
+                }
+                if (!isUnlocked) {
+                    unlockPages();
+                }
+            }
+        }
+
+        // Reveal Password Function
+        function revealPassword() {
+            if (!passwordRevealed) {
+                passwordRevealed = true;
+                const revealEl = document.getElementById('passwordReveal');
+                const inputEl = document.getElementById('passwordInput');
+                
+                if (revealEl) {
+                    revealEl.classList.add('show');
+                }
+                if (inputEl) {
+                    inputEl.value = CORRECT_PASSWORD;
+                    inputEl.type = 'text'; // Show the password
+                }
+            }
+        }
+
+        // Unlock Pages Function
+        function unlockPages() {
+            console.log('Unlocking pages...');
+            isUnlocked = true;
+            
+            try {
+                localStorage.setItem('newYearUnlocked', 'true');
+            } catch(e) {
+                console.log('localStorage error:', e);
+            }
+            
+            // Hide lock overlay
+            const lockOverlay = document.getElementById('lockOverlay');
+            if (lockOverlay) {
+                lockOverlay.classList.add('unlocked');
+                setTimeout(() => {
+                    lockOverlay.style.display = 'none';
+                }, 500);
+            }
+            
+            // Unlock navigation links
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.add('unlocked');
+                link.style.pointerEvents = 'auto';
+                link.style.opacity = '1';
+            });
+            
+            // Show celebration
+            const celebration = document.getElementById('celebration');
+            if (celebration) {
+                celebration.classList.add('active');
+            }
+            
+            // Create confetti
+            for (let i = 0; i < 200; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.animationDelay = '0s';
+                    confetti.style.animationDuration = (2 + Math.random() * 2) + 's';
+                    confetti.style.width = (8 + Math.random() * 12) + 'px';
+                    confetti.style.height = confetti.style.width;
+                    const container = document.getElementById('confettiContainer');
+                    if (container) {
+                        container.appendChild(confetti);
+                    }
+                }, i * 10);
+            }
+        }
+
+        function closeCelebration() {
+            document.getElementById('celebration').classList.remove('active');
+        }
+
+        // Create animated stars
+        function createStars(container, count = 50) {
+            const colors = ['#ffffff', '#b8d4ff', '#ffd4b8', '#ffffff'];
+            for (let i = 0; i < count; i++) {
+                const star = document.createElement('div');
+                const size = Math.random() * 3 + 1;
+                const isBright = Math.random() > 0.7;
+                
+                star.className = `star ${size < 2 ? 'small' : size < 3 ? 'medium' : isBright ? 'bright' : 'large'}`;
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                star.style.animationDuration = (15 + Math.random() * 10) + 's';
+                
+                // Random movement
+                const moveX = (Math.random() - 0.5) * 200;
+                const moveY = (Math.random() - 0.5) * 200;
+                star.style.setProperty('--move-x', moveX + 'px');
+                star.style.setProperty('--move-y', moveY + 'px');
+                
+                // Random color
+                star.style.background = colors[Math.floor(Math.random() * colors.length)];
+                
+                container.appendChild(star);
+            }
+        }
+
+        // Show loading screen
+        function showLoadingScreen() {
+            const loadingScreen = document.getElementById('loadingScreen');
+            const loadingStars = document.getElementById('loadingStars');
+            
+            // Create stars for loading screen
+            if (loadingStars) {
+                loadingStars.innerHTML = '';
+                createStars(loadingStars, 100);
+            }
+            
+            // Show loading screen
+            if (loadingScreen) {
+                loadingScreen.classList.add('active');
+                
+                // After 3 seconds, restart
+                setTimeout(() => {
+                    // Clear localStorage
+                    localStorage.removeItem('newYearUnlocked');
+                    
+                    // Reload page
+                    window.location.reload();
+                }, 3000);
+            }
+        }
+
+        // Initialize stars on final page
+        function initFinalPageStars() {
+            const finalStars = document.getElementById('finalStars');
+            if (finalStars) {
+                createStars(finalStars, 80);
+            }
+        }
+
+        // Make functions globally available
+        window.checkPassword = checkPassword;
+        window.unlockPages = unlockPages;
+        window.showLoadingScreen = showLoadingScreen;
+
+        // Audio player system
+        let currentAudio = null;
+        let currentPlayingElement = null;
+
+        // Play Song Function
+        function playSong(songName, element) {
+            console.log('Playing song:', songName);
+            
+            // Stop currently playing song
+            if (currentAudio) {
+                try {
+                    currentAudio.pause();
+                    currentAudio.currentTime = 0;
+                    currentAudio = null;
+                } catch(e) {
+                    console.log('Error stopping audio:', e);
+                }
+            }
+            
+            // Remove playing class from all cassettes
+            document.querySelectorAll('.cassette').forEach(c => c.classList.remove('playing'));
+            
+            // Add playing class to clicked cassette
+            if (element) {
+                element.classList.add('playing');
+                currentPlayingElement = element;
+            }
+
+            // Song URLs - You can use local files or online URLs
+            // Option 1: Local files in songs folder
+            // Option 2: Direct URLs to online songs
+            // Option 3: YouTube embed (if you have YouTube links)
+            const songUrls = {
+                'sahiba': 'songs/sahiba.m4a',  // M4A format
+                'forareason': 'songs/forareason.mp3',  // Change to your file path or URL
+                'dilkajohalh': 'songs/dilkajohalh.mp3'  // Change to your file path or URL
+            };
+
+            const songUrl = songUrls[songName];
+            if (!songUrl) {
+                alert('Song not found: ' + songName);
+                return;
+            }
+
+            console.log('Loading audio from:', songUrl);
+
+            // Create audio element
+            const audio = new Audio();
+            audio.src = songUrl;
+            audio.preload = 'auto';
+            
+            // Event handlers
+            audio.onloadstart = function() {
+                console.log('Audio loading started');
+            };
+
+            audio.oncanplay = function() {
+                console.log('Audio can play');
+            };
+
+            audio.onplay = function() {
+                console.log('Audio playing');
+                if (currentPlayingElement) {
+                    currentPlayingElement.classList.add('playing');
+                }
+            };
+
+            audio.onpause = function() {
+                console.log('Audio paused');
+                document.querySelectorAll('.cassette').forEach(c => c.classList.remove('playing'));
+            };
+
+            audio.onended = function() {
+                console.log('Audio ended');
+                document.querySelectorAll('.cassette').forEach(c => c.classList.remove('playing'));
+                currentAudio = null;
+                currentPlayingElement = null;
+            };
+
+            audio.onerror = function(e) {
+                console.error('Audio error:', e);
+                console.error('Failed to load:', songUrl);
+                document.querySelectorAll('.cassette').forEach(c => c.classList.remove('playing'));
+                
+                // Show helpful error message
+                const songNames = {
+                    'sahiba': 'Sahiba',
+                    'forareason': 'For A Reason',
+                    'dilkajohalh': 'Dil Ka Jo Hal H'
+                };
+                
+                alert(`Could not load "${songNames[songName]}".\n\nPlease make sure:\n1. The file exists at: ${songUrl}\n2. Or update the file path in the code\n3. File format is supported (MP3, WAV, OGG, M4A)\n\nYou can also use online URLs by updating the songUrls object in the code.`);
+            };
+
+            // Try to play the song
+            audio.play().then(() => {
+                console.log('Audio play started successfully');
+                currentAudio = audio;
+            }).catch(error => {
+                console.error('Audio play error:', error);
+                document.querySelectorAll('.cassette').forEach(c => c.classList.remove('playing'));
+                
+                if (error.name === 'NotAllowedError') {
+                    alert('Browser blocked audio playback. Please interact with the page first (click anywhere) and try again.');
+                } else if (error.name === 'NotSupportedError') {
+                    alert('Audio format not supported. Please use MP3, WAV, OGG, or M4A format.');
+                } else {
+                    alert('Could not play song. Error: ' + error.message + '\n\nMake sure the audio file exists and is accessible.');
+                }
+            });
+        }
+
+        // Make playSong globally available
+        window.playSong = playSong;
+
+        // ========== INITIALIZATION ==========
+        function initializeSystem() {
+            console.log('Initializing system...');
+            console.log('isUnlocked:', isUnlocked);
+            
+            const lockOverlay = document.getElementById('lockOverlay');
+            const passwordInput = document.getElementById('passwordInput');
+            const unlockButton = document.querySelector('.password-button');
+            
+            if (isUnlocked) {
+                // Already unlocked - hide overlay
+                console.log('Pages already unlocked');
+                if (lockOverlay) {
+                    lockOverlay.classList.add('unlocked');
+                    setTimeout(() => {
+                        lockOverlay.style.display = 'none';
+                    }, 100);
+                }
+                
+                // Unlock all navigation
+                document.querySelectorAll('.nav-links a').forEach(link => {
+                    link.classList.add('unlocked');
+                    link.style.pointerEvents = 'auto';
+                    link.style.opacity = '1';
+                });
+            } else {
+                // Locked - show overlay
+                console.log('Pages are locked - showing overlay');
+                if (lockOverlay) {
+                    lockOverlay.style.display = 'flex';
+                    lockOverlay.style.opacity = '1';
+                    lockOverlay.style.pointerEvents = 'auto';
+                    lockOverlay.style.zIndex = '10000';
+                    lockOverlay.classList.remove('unlocked');
+                }
+                
+                // Lock navigation links (except home)
+                document.querySelectorAll('.nav-links a').forEach(link => {
+                    if (!link.classList.contains('unlocked')) {
+                        link.style.pointerEvents = 'none';
+                        link.style.opacity = '0.5';
+                    }
+                });
+                
+                // Setup password input
+                if (passwordInput) {
+                    passwordInput.addEventListener('keypress', function(e) {
+                        if (e.key === 'Enter') {
+                            checkPassword();
+                        }
+                    });
+                }
+                
+                // Setup unlock button
+                if (unlockButton) {
+                    unlockButton.onclick = function() {
+                        checkPassword();
+                    };
+                }
+            }
+            
+            // Start countdown timer
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+            
+            // Update nav buttons
+            updateNavButtons();
+            
+            // Initialize stars on final page
+            initFinalPageStars();
+            
+            // Re-initialize stars when final page is shown
+            const observer = new MutationObserver(() => {
+                if (document.getElementById('finalPage')?.classList.contains('active')) {
+                    const finalStars = document.getElementById('finalStars');
+                    if (finalStars && finalStars.children.length === 0) {
+                        initFinalPageStars();
+                    }
+                }
+            });
+            
+            observer.observe(document.body, { childList: true, subtree: true });
+            
+            console.log('System initialized');
+        }
+
+        // Initialize when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializeSystem);
+        } else {
+            initializeSystem();
+        }
+    </script>
+</body>
+</html>
