@@ -1330,6 +1330,8 @@
             // Update current page index
             currentPageIndex = pages.indexOf(pageId);
             updateNavButtons();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
         }
 
         function navigatePage(direction) {
@@ -1791,6 +1793,7 @@
     </script>
 </body>
 </html>
+
 
 
 
