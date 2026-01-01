@@ -9,11 +9,37 @@
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        /* RESET & RESPONSIVE BASE */
+         * {
+             box-sizing: border-box;
+         }
+
+        html, body {
+                   margin: 0;
+                   padding: 0;
+                   width: 100%;
+                   height: 100%;
+                   overflow-x: hidden;
+                   font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+        img, video {
+                max-width: 100%;
+                height: auto;
+}
+
+        button {
+                max-width: 100%;
+}
+
+        .container {
+                    width: 100%;
+                    max-width: 1200px;
+                    margin: auto;
+                    padding: 0 1rem;
+}
+
+
 
         :root {
             --primary-pink: #FF6B9D;
@@ -949,6 +975,26 @@
                 font-size: 0.9rem;
             }
         }
+        @media (max-width: 768px) {
+
+             .nav {
+                  padding: 0.5rem 1rem;
+    }
+
+             .hero, .section {
+                   padding: 1.2rem 1rem;
+    }
+
+             .cassette {
+                    padding: 0.8rem;
+                    font-size: 0.9rem;
+    }
+
+              button {
+                     width: 100%;
+    }
+}
+
     </style>
 </head>
 <body>
@@ -1749,3 +1795,4 @@
     </script>
 </body>
 </html>
+
