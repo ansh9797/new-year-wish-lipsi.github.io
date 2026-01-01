@@ -39,6 +39,14 @@
                     padding: 0 1rem;
 }
 
+        /* Fix mobile viewport height issues */
+:root {
+    --vh: 1vh;
+}
+
+body {
+    min-height: calc(var(--vh) * 100);
+}
 
 
         :root {
@@ -64,11 +72,19 @@
         }
 
         /* Page Container */
-        .page {
-            display: none;
-            min-height: 100vh;
-            padding: 2rem;
-        }
+       .page {
+    width: 100%;
+    min-height: 100%;
+    padding: clamp(1rem, 4vw, 2rem);
+}
+        /* Safe-area support (notch / gesture bar) */
+.page, .container, main {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
 
         .page.active {
             display: block;
@@ -1790,9 +1806,19 @@
         } else {
             initializeSystem();
         }
+        function setVH() {
+    document.documentElement.style.setProperty(
+        '--vh',
+        `${window.innerHeight * 0.01}px`
+    );
+}
+        setVH();
+            window.addEventListener('resize', setVH);
+            window.addEventListener('orientationchange', setVH);
     </script>
 </body>
 </html>
+
 
 
 
